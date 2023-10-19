@@ -1,0 +1,21 @@
+{
+    "name": "@foxypool/downloads",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "npx wrangler dev",
+        "deploy": "npx wrangler publish",
+        "lint": "eslint --ext .ts .",
+        "lint:fix": "pnpm lint --fix",
+        "update": "ncu -u"
+    },
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20231016.0",
+        "@typescript-eslint/eslint-plugin": "^6.8.0",
+        "@typescript-eslint/parser": "^6.8.0",
+        "eslint": "^8.51.0",
+        "npm-check-updates": "^16.14.6",
+        "typescript": "^5.2.2",
+        "wrangler": "^3.13.2"
+    }
+}

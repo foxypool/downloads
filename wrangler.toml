@@ -1,0 +1,3 @@
+main = "./src/index.ts"
+name = "foxypool-downloads"
+compatibility_date = "2023-10-19"

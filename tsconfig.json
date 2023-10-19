@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "incremental": true,
+        "lib": ["ES2021"],
+        "module": "ES2022",
+        "moduleResolution": "node",
+        "target": "ES2021",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "noImplicitOverride": true,
+        "types": [
+            "@cloudflare/workers-types",
+        ],
+        "isolatedModules": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+}
