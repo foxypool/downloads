@@ -32,15 +32,10 @@ export const rootDirectory: Directory = {
                 'foxy-farmer-windows-latest.zip',
               ],
             }),
-            latest: makeDirectoryFromGithubRelease({
-              repo: 'foxypool/foxy-farmer',
-              tag: '1.9.1',
-              files: [
-                'foxy-farmer-macos-latest.zip',
-                'foxy-farmer-ubuntu-latest.zip',
-                'foxy-farmer-windows-latest.zip',
-              ],
-            }),
+            latest: {
+              type: 'link',
+              pointsTo: '1.9.1',
+            },
           },
         },
         'foxy-gh-farmer': {
@@ -54,14 +49,10 @@ export const rootDirectory: Directory = {
                 'foxy-gh-farmer-windows-latest.zip',
               ],
             }),
-            latest: makeDirectoryFromGithubRelease({
-              repo: 'foxypool/foxy-gh-farmer',
-              tag: '1.1.1',
-              files: [
-                'foxy-gh-farmer-ubuntu-latest.zip',
-                'foxy-gh-farmer-windows-latest.zip',
-              ],
-            }),
+            latest: {
+              type: 'link',
+              pointsTo: '1.1.1',
+            },
           },
         },
       },

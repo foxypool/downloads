@@ -8,17 +8,21 @@ function getDirectoryOrFile(uri: string): DirectoryOrFile|undefined {
     if (current.type === 'file') {
       return
     }
-    if (current.entries[component] === undefined) {
+    let child = current.entries[component]
+    if (child?.type === 'link') {
+      child = current.entries[child.pointsTo]
+    }
+    if (child === undefined) {
       return
     }
 
-    current = current.entries[component]
+    current = child
   }
 
   return current
 }
 
-function trim(src: string) {
+function trim(src: string): string {
   return src
     .trim()
     .split('\n')
@@ -37,7 +41,7 @@ function formatName(name: string): string {
 function makeDirectoryHtml(uri: string, directory: Directory): string {
   const prev = `<a href="../">../</a>`
   const entries = Object.entries(directory.entries).map(([name, directoryOrFile]) => {
-    const nameForHtml = encodeURI(name) + (directoryOrFile.type === 'directory' ? '/' : '')
+    const nameForHtml = encodeURI(name) + (directoryOrFile.type === 'directory' || directoryOrFile.type === 'link' ? '/' : '')
 
     return `<a href="${nameForHtml}" title="${nameForHtml}">${formatName(nameForHtml)}</a>`
   })
