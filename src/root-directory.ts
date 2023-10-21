@@ -18,6 +18,15 @@ export const rootDirectory: Directory = {
                 'chia-gigahorse-farmer-1.8.2.giga14-x86_64.tar.gz',
               ],
             }),
+            '1.8.2.giga20': makeDirectoryFromGithubRelease({
+              repo: 'madMAx43v3r/chia-gigahorse',
+              tag: '1.8.2.giga20',
+              files: [
+                // 'chia-gigahorse-farmer-1.8.2.giga20-aarch64.tar.gz',
+                'chia-gigahorse-farmer-1.8.2.giga20-windows.zip',
+                'chia-gigahorse-farmer-1.8.2.giga20-x86_64.tar.gz',
+              ],
+            }),
           },
         },
         'foxy-farmer': {
