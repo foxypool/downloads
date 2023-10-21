@@ -20,7 +20,7 @@ export const rootDirectory: Directory = {
             }),
             '1.8.2.giga20': makeDirectoryFromGithubRelease({
               repo: 'madMAx43v3r/chia-gigahorse',
-              tag: '1.8.2.giga20',
+              tag: 'v1.8.2.giga20',
               files: [
                 // 'chia-gigahorse-farmer-1.8.2.giga20-aarch64.tar.gz',
                 'chia-gigahorse-farmer-1.8.2.giga20-windows.zip',
