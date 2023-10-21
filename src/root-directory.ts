@@ -22,7 +22,7 @@ export const rootDirectory: Directory = {
               repo: 'madMAx43v3r/chia-gigahorse',
               tag: 'v1.8.2.giga20',
               files: [
-                // 'chia-gigahorse-farmer-1.8.2.giga20-aarch64.tar.gz',
+                'chia-gigahorse-farmer-1.8.2.giga20-aarch64.tar.gz',
                 'chia-gigahorse-farmer-1.8.2.giga20-windows.zip',
                 'chia-gigahorse-farmer-1.8.2.giga20-x86_64.tar.gz',
               ],
