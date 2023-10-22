@@ -9,68 +9,30 @@ export const rootDirectory: Directory = {
         gigahorse: {
           type: 'directory',
           entries: {
-            '1.8.2.giga14': makeDirectoryFromGithubRelease({
-              repo: 'madMAx43v3r/chia-gigahorse',
-              tag: 'v1.8.2.giga14',
-              files: [
-                'chia-gigahorse-farmer-1.8.2.giga14-aarch64.tar.gz',
-                'chia-gigahorse-farmer-1.8.2.giga14-windows.zip',
-                'chia-gigahorse-farmer-1.8.2.giga14-x86_64.tar.gz',
-              ],
-            }),
-            '1.8.2.giga20': makeDirectoryFromGithubRelease({
-              repo: 'madMAx43v3r/chia-gigahorse',
-              tag: 'v1.8.2.giga20',
-              files: [
-                'chia-gigahorse-farmer-1.8.2.giga20-aarch64.tar.gz',
-                'chia-gigahorse-farmer-1.8.2.giga20-windows.zip',
-                'chia-gigahorse-farmer-1.8.2.giga20-x86_64.tar.gz',
-              ],
-            }),
-            '1.8.2.giga21': makeDirectoryFromGithubRelease({
-              repo: 'madMAx43v3r/chia-gigahorse',
-              tag: 'v1.8.2.giga21',
-              files: [
-                'chia-gigahorse-farmer-1.8.2.giga21-aarch64.tar.gz',
-                'chia-gigahorse-farmer-1.8.2.giga21-windows.zip',
-                'chia-gigahorse-farmer-1.8.2.giga21-x86_64.tar.gz',
-              ],
-            }),
+            '1.8.2.giga14': makeDirectoryForGigahorseRelease('1.8.2.giga14'),
+            '1.8.2.giga20': makeDirectoryForGigahorseRelease('1.8.2.giga20'),
+            '1.8.2.giga21': makeDirectoryForGigahorseRelease('1.8.2.giga21'),
+            '1.8.2.giga22': makeDirectoryForGigahorseRelease('1.8.2.giga22'),
           },
         },
         'foxy-farmer': {
           type: 'directory',
           entries: {
-            '1.9.1': makeDirectoryFromGithubRelease({
-              repo: 'foxypool/foxy-farmer',
-              tag: '1.9.1',
-              files: [
-                'foxy-farmer-macos-latest.zip',
-                'foxy-farmer-ubuntu-latest.zip',
-                'foxy-farmer-windows-latest.zip',
-              ],
-            }),
             latest: {
               type: 'link',
               pointsTo: '1.9.1',
             },
+            '1.9.1': makeDirectoryForFoxyFarmerRelease('1.9.1'),
           },
         },
         'foxy-gh-farmer': {
           type: 'directory',
           entries: {
-            '1.1.1': makeDirectoryFromGithubRelease({
-              repo: 'foxypool/foxy-gh-farmer',
-              tag: '1.1.1',
-              files: [
-                'foxy-gh-farmer-ubuntu-latest.zip',
-                'foxy-gh-farmer-windows-latest.zip',
-              ],
-            }),
             latest: {
               type: 'link',
               pointsTo: '1.1.1',
             },
+            '1.1.1': makeDirectoryForFoxyGhFarmerRelease('1.1.1'),
           },
         },
       },
@@ -91,4 +53,39 @@ function makeDirectoryFromGithubRelease({ repo, tag, files }: { repo: string, ta
       return entries
     }, {}),
   }
+}
+
+function makeDirectoryForGigahorseRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'madMAx43v3r/chia-gigahorse',
+    tag: `v${version}`,
+    files: [
+      `chia-gigahorse-farmer-${version}-aarch64.tar.gz`,
+      `chia-gigahorse-farmer-${version}-windows.zip`,
+      `chia-gigahorse-farmer-${version}-x86_64.tar.gz`,
+    ],
+  })
+}
+
+function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'foxypool/foxy-farmer',
+    tag: version,
+    files: [
+      'foxy-farmer-macos-latest.zip',
+      'foxy-farmer-ubuntu-latest.zip',
+      'foxy-farmer-windows-latest.zip',
+    ],
+  })
+}
+
+function makeDirectoryForFoxyGhFarmerRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'foxypool/foxy-gh-farmer',
+    tag: version,
+    files: [
+      'foxy-gh-farmer-ubuntu-latest.zip',
+      'foxy-gh-farmer-windows-latest.zip',
+    ],
+  })
 }
