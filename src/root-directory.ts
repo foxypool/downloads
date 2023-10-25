@@ -13,6 +13,7 @@ export const rootDirectory: Directory = {
             '1.8.2.giga20': makeDirectoryForGigahorseRelease('1.8.2.giga20'),
             '1.8.2.giga21': makeDirectoryForGigahorseRelease('1.8.2.giga21'),
             '1.8.2.giga22': makeDirectoryForGigahorseRelease('1.8.2.giga22'),
+            '2.1.1.giga22': makeDirectoryForGigahorseRelease('2.1.1.giga22'),
           },
         },
         'foxy-farmer': {
