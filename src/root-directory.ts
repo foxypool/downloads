@@ -21,9 +21,10 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.9.1',
+              pointsTo: '1.10.0',
             },
             '1.9.1': makeDirectoryForFoxyFarmerRelease('1.9.1'),
+            '1.10.0': makeDirectoryForFoxyFarmerRelease('1.10.0'),
           },
         },
         'foxy-gh-farmer': {
