@@ -23,8 +23,8 @@ export const rootDirectory: Directory = {
               type: 'link',
               pointsTo: '1.10.0',
             },
-            '1.9.1': makeDirectoryForFoxyFarmerRelease('1.9.1'),
-            '1.10.0': makeDirectoryForFoxyFarmerRelease('1.10.0'),
+            '1.9.1': makeDirectoryForLegacyFoxyFarmerRelease('1.9.1'),
+            '1.10.0': makeDirectoryForLegacyFoxyFarmerRelease('1.10.0'),
           },
         },
         'foxy-gh-farmer': {
@@ -34,13 +34,13 @@ export const rootDirectory: Directory = {
               type: 'link',
               pointsTo: '1.4.0',
             },
-            '1.1.1': makeDirectoryForFoxyGhFarmerRelease('1.1.1'),
-            '1.2.0': makeDirectoryForFoxyGhFarmerRelease('1.2.0'),
-            '1.2.1': makeDirectoryForFoxyGhFarmerRelease('1.2.1'),
-            '1.2.2': makeDirectoryForFoxyGhFarmerRelease('1.2.2'),
-            '1.2.3': makeDirectoryForFoxyGhFarmerRelease('1.2.3'),
-            '1.3.0': makeDirectoryForFoxyGhFarmerRelease('1.3.0'),
-            '1.4.0': makeDirectoryForFoxyGhFarmerRelease('1.4.0'),
+            '1.1.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.1.1'),
+            '1.2.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.0'),
+            '1.2.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.1'),
+            '1.2.2': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.2'),
+            '1.2.3': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.3'),
+            '1.3.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.3.0'),
+            '1.4.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.4.0'),
           },
         },
       },
@@ -75,7 +75,7 @@ function makeDirectoryForGigahorseRelease(version: string): Directory {
   })
 }
 
-function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
+function makeDirectoryForLegacyFoxyFarmerRelease(version: string): Directory {
   return makeDirectoryFromGithubRelease({
     repo: 'foxypool/foxy-farmer',
     tag: version,
@@ -87,13 +87,36 @@ function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
   })
 }
 
-function makeDirectoryForFoxyGhFarmerRelease(version: string): Directory {
+function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'foxypool/foxy-farmer',
+    tag: version,
+    files: [
+      'foxy-farmer-macos.zip',
+      'foxy-farmer-ubuntu.zip',
+      'foxy-farmer-windows.zip',
+    ],
+  })
+}
+
+function makeDirectoryForLegacyFoxyGhFarmerRelease(version: string): Directory {
   return makeDirectoryFromGithubRelease({
     repo: 'foxypool/foxy-gh-farmer',
     tag: version,
     files: [
       'foxy-gh-farmer-ubuntu-latest.zip',
       'foxy-gh-farmer-windows-latest.zip',
+    ],
+  })
+}
+
+function makeDirectoryForFoxyGhFarmerRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'foxypool/foxy-gh-farmer',
+    tag: version,
+    files: [
+      'foxy-gh-farmer-ubuntu.zip',
+      'foxy-gh-farmer-windows.zip',
     ],
   })
 }
