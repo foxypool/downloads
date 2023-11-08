@@ -22,12 +22,15 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.10.2',
+              pointsTo: '1.12.1',
             },
             '1.9.1': makeDirectoryForLegacyFoxyFarmerRelease('1.9.1'),
             '1.10.0': makeDirectoryForLegacyFoxyFarmerRelease('1.10.0'),
             '1.10.1': makeDirectoryForFoxyFarmerRelease('1.10.1'),
             '1.10.2': makeDirectoryForFoxyFarmerRelease('1.10.2'),
+            '1.11.0': makeDirectoryForFoxyFarmerRelease('1.11.0'),
+            '1.12.0': makeDirectoryForFoxyFarmerRelease('1.12.0'),
+            '1.12.1': makeDirectoryForFoxyFarmerRelease('1.12.1'),
           },
         },
         'foxy-gh-farmer': {
@@ -35,7 +38,7 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.4.2',
+              pointsTo: '1.6.1',
             },
             '1.1.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.1.1'),
             '1.2.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.0'),
@@ -46,6 +49,9 @@ export const rootDirectory: Directory = {
             '1.4.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.4.0'),
             '1.4.1': makeDirectoryForFoxyGhFarmerRelease('1.4.1'),
             '1.4.2': makeDirectoryForFoxyGhFarmerRelease('1.4.2'),
+            '1.5.0': makeDirectoryForFoxyGhFarmerRelease('1.5.0'),
+            '1.6.0': makeDirectoryForFoxyGhFarmerRelease('1.6.0'),
+            '1.6.1': makeDirectoryForFoxyGhFarmerRelease('1.6.1'),
           },
         },
       },
