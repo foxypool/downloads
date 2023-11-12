@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
         "incremental": true,
-        "lib": ["ES2021"],
-        "module": "ES2022",
+        "lib": ["esnext"],
+        "module": "esnext",
         "moduleResolution": "node",
-        "target": "ES2021",
+        "target": "esnext",
         "esModuleInterop": true,
         "resolveJsonModule": true,
         "strictNullChecks": true,

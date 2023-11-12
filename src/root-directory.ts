@@ -1,4 +1,6 @@
-import {Directory, File} from './types/directory-or-file'
+import {Directory} from './types/directory-or-file'
+import {arrayOfKeysToObject} from './array-to-object'
+import {foxyFarmerVersions, foxyGhFarmerVersions, gigahorseVersions} from './versions'
 
 export const rootDirectory: Directory = {
   type: 'directory',
@@ -9,12 +11,7 @@ export const rootDirectory: Directory = {
         gigahorse: {
           type: 'directory',
           entries: {
-            '1.8.2.giga14': makeDirectoryForGigahorseRelease('1.8.2.giga14'),
-            '1.8.2.giga20': makeDirectoryForGigahorseRelease('1.8.2.giga20'),
-            '1.8.2.giga21': makeDirectoryForGigahorseRelease('1.8.2.giga21'),
-            '1.8.2.giga22': makeDirectoryForGigahorseRelease('1.8.2.giga22'),
-            '2.1.1.giga22': makeDirectoryForGigahorseRelease('2.1.1.giga22'),
-            '2.1.1.giga23': makeDirectoryForGigahorseRelease('2.1.1.giga23'),
+            ...arrayOfKeysToObject(gigahorseVersions, makeDirectoryForGigahorseRelease),
           },
         },
         'foxy-farmer': {
@@ -22,16 +19,9 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.13.0',
+              pointsTo: foxyFarmerVersions.at(-1) as string,
             },
-            '1.9.1': makeDirectoryForLegacyFoxyFarmerRelease('1.9.1'),
-            '1.10.0': makeDirectoryForLegacyFoxyFarmerRelease('1.10.0'),
-            '1.10.1': makeDirectoryForFoxyFarmerRelease('1.10.1'),
-            '1.10.2': makeDirectoryForFoxyFarmerRelease('1.10.2'),
-            '1.11.0': makeDirectoryForFoxyFarmerRelease('1.11.0'),
-            '1.12.0': makeDirectoryForFoxyFarmerRelease('1.12.0'),
-            '1.12.1': makeDirectoryForFoxyFarmerRelease('1.12.1'),
-            '1.13.0': makeDirectoryForFoxyFarmerRelease('1.13.0'),
+            ...arrayOfKeysToObject(foxyFarmerVersions, makeDirectoryForFoxyFarmerRelease),
           },
         },
         'foxy-gh-farmer': {
@@ -39,21 +29,9 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.7.0',
+              pointsTo: foxyGhFarmerVersions.at(-1) as string,
             },
-            '1.1.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.1.1'),
-            '1.2.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.0'),
-            '1.2.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.1'),
-            '1.2.2': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.2'),
-            '1.2.3': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.3'),
-            '1.3.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.3.0'),
-            '1.4.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.4.0'),
-            '1.4.1': makeDirectoryForFoxyGhFarmerRelease('1.4.1'),
-            '1.4.2': makeDirectoryForFoxyGhFarmerRelease('1.4.2'),
-            '1.5.0': makeDirectoryForFoxyGhFarmerRelease('1.5.0'),
-            '1.6.0': makeDirectoryForFoxyGhFarmerRelease('1.6.0'),
-            '1.6.1': makeDirectoryForFoxyGhFarmerRelease('1.6.1'),
-            '1.7.0': makeDirectoryForFoxyGhFarmerRelease('1.7.0'),
+            ...arrayOfKeysToObject(foxyGhFarmerVersions, makeDirectoryForFoxyGhFarmerRelease),
           },
         },
       },
@@ -65,14 +43,10 @@ export const rootDirectory: Directory = {
 function makeDirectoryFromGithubRelease({ repo, tag, files }: { repo: string, tag: string, files: string[] }): Directory {
   return {
     type: 'directory',
-    entries: files.reduce((entries: Record<string, File>, file: string) => {
-      entries[file] = {
-        type: 'file',
-        url: `https://github.com/${repo}/releases/download/${tag}/${file}`,
-      }
-
-      return entries
-    }, {}),
+    entries: arrayOfKeysToObject(files, file => ({
+      type: 'file',
+      url: `https://github.com/${repo}/releases/download/${tag}/${file}`,
+    })),
   }
 }
 
@@ -88,18 +62,6 @@ function makeDirectoryForGigahorseRelease(version: string): Directory {
   })
 }
 
-function makeDirectoryForLegacyFoxyFarmerRelease(version: string): Directory {
-  return makeDirectoryFromGithubRelease({
-    repo: 'foxypool/foxy-farmer',
-    tag: version,
-    files: [
-      'foxy-farmer-macos-latest.zip',
-      'foxy-farmer-ubuntu-latest.zip',
-      'foxy-farmer-windows-latest.zip',
-    ],
-  })
-}
-
 function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
   return makeDirectoryFromGithubRelease({
     repo: 'foxypool/foxy-farmer',
@@ -108,17 +70,6 @@ function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
       'foxy-farmer-macos.zip',
       'foxy-farmer-ubuntu.zip',
       'foxy-farmer-windows.zip',
-    ],
-  })
-}
-
-function makeDirectoryForLegacyFoxyGhFarmerRelease(version: string): Directory {
-  return makeDirectoryFromGithubRelease({
-    repo: 'foxypool/foxy-gh-farmer',
-    tag: version,
-    files: [
-      'foxy-gh-farmer-ubuntu-latest.zip',
-      'foxy-gh-farmer-windows-latest.zip',
     ],
   })
 }
