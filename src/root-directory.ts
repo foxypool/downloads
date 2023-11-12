@@ -22,7 +22,7 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.12.1',
+              pointsTo: '1.13.0',
             },
             '1.9.1': makeDirectoryForLegacyFoxyFarmerRelease('1.9.1'),
             '1.10.0': makeDirectoryForLegacyFoxyFarmerRelease('1.10.0'),
@@ -31,6 +31,7 @@ export const rootDirectory: Directory = {
             '1.11.0': makeDirectoryForFoxyFarmerRelease('1.11.0'),
             '1.12.0': makeDirectoryForFoxyFarmerRelease('1.12.0'),
             '1.12.1': makeDirectoryForFoxyFarmerRelease('1.12.1'),
+            '1.13.0': makeDirectoryForFoxyFarmerRelease('1.13.0'),
           },
         },
         'foxy-gh-farmer': {
@@ -38,7 +39,7 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: '1.6.1',
+              pointsTo: '1.7.0',
             },
             '1.1.1': makeDirectoryForLegacyFoxyGhFarmerRelease('1.1.1'),
             '1.2.0': makeDirectoryForLegacyFoxyGhFarmerRelease('1.2.0'),
@@ -52,6 +53,7 @@ export const rootDirectory: Directory = {
             '1.5.0': makeDirectoryForFoxyGhFarmerRelease('1.5.0'),
             '1.6.0': makeDirectoryForFoxyGhFarmerRelease('1.6.0'),
             '1.6.1': makeDirectoryForFoxyGhFarmerRelease('1.6.1'),
+            '1.7.0': makeDirectoryForFoxyGhFarmerRelease('1.7.0'),
           },
         },
       },
