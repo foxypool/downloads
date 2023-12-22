@@ -7,6 +7,7 @@ export const gigahorseVersions: string[] = [
   '2.1.1.giga23',
   '2.1.1.giga24',
   '2.1.1.giga25',
+  '2.1.3.giga26',
 ]
 
 export const foxyFarmerVersions: string[] = [
