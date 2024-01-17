@@ -8,6 +8,7 @@ export const gigahorseVersions: string[] = [
   '2.1.1.giga24',
   '2.1.1.giga25',
   '2.1.3.giga26',
+  '2.1.4.giga26',
 ]
 
 export const foxyFarmerVersions: string[] = [
@@ -19,6 +20,7 @@ export const foxyFarmerVersions: string[] = [
   '1.13.0',
   '1.13.1',
   '1.13.2',
+  '1.14.0',
 ]
 
 export const foxyGhFarmerVersions: string[] = [
@@ -31,4 +33,5 @@ export const foxyGhFarmerVersions: string[] = [
   '1.7.1',
   '1.7.2',
   '1.8.0',
+  '1.9.0',
 ]
