@@ -34,6 +34,18 @@ export const rootDirectory: Directory = {
             ...arrayOfKeysToObject(foxyGhFarmerVersions, makeDirectoryForFoxyGhFarmerRelease),
           },
         },
+        drplotter: {
+          type: 'directory',
+          entries: {
+            '0.9.0': makeDirectoryFromGithubRelease({
+              repo: 'foxypool/downloads',
+              tag: 'binaries',
+              files: [
+                'drplotter-0.9.0-x86_64.tar.gz',
+              ],
+            }),
+          },
+        },
       },
     },
   },
