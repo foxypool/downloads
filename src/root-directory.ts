@@ -1,6 +1,6 @@
 import {Directory} from './types/directory-or-file'
 import {arrayOfKeysToObject} from './array-to-object'
-import {foxyFarmerVersions, foxyGhFarmerVersions, gigahorseVersions} from './versions'
+import {drPlotterVersions, foxyFarmerVersions, foxyGhFarmerVersions, gigahorseVersions} from './versions'
 
 export const rootDirectory: Directory = {
   type: 'directory',
@@ -44,6 +44,7 @@ export const rootDirectory: Directory = {
                 'drplotter-0.9.0-x86_64.tar.gz',
               ],
             }),
+            ...arrayOfKeysToObject(drPlotterVersions, makeDirectoryForDrPlotterRelease),
           },
         },
       },
@@ -70,6 +71,16 @@ function makeDirectoryForGigahorseRelease(version: string): Directory {
       `chia-gigahorse-farmer-${version}-aarch64.tar.gz`,
       `chia-gigahorse-farmer-${version}-windows.zip`,
       `chia-gigahorse-farmer-${version}-x86_64.tar.gz`,
+    ],
+  })
+}
+
+function makeDirectoryForDrPlotterRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'drnick23/drplotter',
+    tag: version,
+    files: [
+      `drplotter-${version}-x86_64.tar.gz`,
     ],
   })
 }
