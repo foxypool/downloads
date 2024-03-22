@@ -44,6 +44,13 @@ export const rootDirectory: Directory = {
                 'drplotter-0.9.0-x86_64.tar.gz',
               ],
             }),
+            '0.9.2': makeDirectoryFromGithubRelease({
+              repo: 'drnick23/drplotter',
+              tag: '0.9.2',
+              files: [
+                `drplotter-0.9.2-x86_64.tar.gz`,
+              ],
+            }),
             ...arrayOfKeysToObject(drPlotterVersions, makeDirectoryForDrPlotterRelease),
           },
         },
@@ -80,7 +87,7 @@ function makeDirectoryForDrPlotterRelease(version: string): Directory {
     repo: 'drnick23/drplotter',
     tag: version,
     files: [
-      `drplotter-${version}-x86_64.tar.gz`,
+      `drplotter-${version}-x86-64.tar.gz`,
     ],
   })
 }
