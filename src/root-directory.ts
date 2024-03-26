@@ -1,6 +1,12 @@
 import {Directory} from './types/directory-or-file'
 import {arrayOfKeysToObject} from './array-to-object'
-import {drPlotterVersions, foxyFarmerVersions, foxyGhFarmerVersions, gigahorseVersions} from './versions'
+import {
+  allFoxyFarmerVersions,
+  drPlotterVersions,
+  foxyFarmerVersions,
+  oldFoxyFarmerVersions,
+  gigahorseVersions,
+} from './versions'
 
 export const rootDirectory: Directory = {
   type: 'directory',
@@ -19,19 +25,10 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: foxyFarmerVersions.at(-1) as string,
+              pointsTo: allFoxyFarmerVersions.at(-1) as string,
             },
-            ...arrayOfKeysToObject(foxyFarmerVersions, makeDirectoryForFoxyFarmerRelease),
-          },
-        },
-        'foxy-gh-farmer': {
-          type: 'directory',
-          entries: {
-            latest: {
-              type: 'link',
-              pointsTo: foxyGhFarmerVersions.at(-1) as string,
-            },
-            ...arrayOfKeysToObject(foxyGhFarmerVersions, makeDirectoryForFoxyGhFarmerRelease),
+            ...arrayOfKeysToObject(oldFoxyFarmerVersions, makeFoxyFarmerReleaseFactory({ haveMacOsArmRelease: false })),
+            ...arrayOfKeysToObject(foxyFarmerVersions, makeFoxyFarmerReleaseFactory({ haveMacOsArmRelease: true })),
           },
         },
         drplotter: {
@@ -92,25 +89,26 @@ function makeDirectoryForDrPlotterRelease(version: string): Directory {
   })
 }
 
-function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
-  return makeDirectoryFromGithubRelease({
-    repo: 'foxypool/foxy-farmer',
-    tag: version,
-    files: [
-      'foxy-farmer-macos.zip',
-      'foxy-farmer-ubuntu.zip',
-      'foxy-farmer-windows.zip',
-    ],
-  })
+interface MakeFoxyFarmerReleaseFactoryOptions {
+  haveMacOsArmRelease: boolean
 }
 
-function makeDirectoryForFoxyGhFarmerRelease(version: string): Directory {
-  return makeDirectoryFromGithubRelease({
-    repo: 'foxypool/foxy-gh-farmer',
-    tag: version,
-    files: [
-      'foxy-gh-farmer-ubuntu.zip',
-      'foxy-gh-farmer-windows.zip',
-    ],
-  })
+function makeFoxyFarmerReleaseFactory(options: MakeFoxyFarmerReleaseFactoryOptions): (version: string) => Directory {
+  const files: string[] = [
+    'foxy-farmer-macos.zip',
+    'foxy-farmer-ubuntu.zip',
+    'foxy-farmer-ubuntu-20.04.zip',
+    'foxy-farmer-windows.zip',
+  ]
+  if (options.haveMacOsArmRelease) {
+    files.unshift('foxy-farmer-macos-arm64.zip')
+  }
+
+  return (version: string): Directory => {
+    return makeDirectoryFromGithubRelease({
+      repo: 'foxypool/foxy-farmer',
+      tag: version,
+      files,
+    })
+  }
 }
