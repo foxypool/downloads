@@ -101,7 +101,7 @@ function makeFoxyFarmerReleaseFactory(options: MakeFoxyFarmerReleaseFactoryOptio
     'foxy-farmer-windows.zip',
   ]
   if (options.haveMacOsArmRelease) {
-    files.unshift('foxy-farmer-macos-arm64.zip')
+    files.splice(1, 0, 'foxy-farmer-macos-arm64.zip')
   }
 
   return (version: string): Directory => {
