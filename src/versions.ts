@@ -25,7 +25,9 @@ export const oldFoxyFarmerVersions: string[] = [
   '1.22.3',
 ]
 
-export const foxyFarmerVersions: string[] = []
+export const foxyFarmerVersions: string[] = [
+  '1.22.4',
+]
 
 export const allFoxyFarmerVersions: string[] = oldFoxyFarmerVersions.concat(foxyFarmerVersions)
 
