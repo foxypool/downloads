@@ -16,18 +16,9 @@ export const gigahorseVersions: string[] = [
 ]
 
 export const drPlotterVersions: string[] = [
-  '0.10.0',
-  '0.11.0',
-]
-
-export const oldFoxyFarmerVersions: string[] = [
-  '1.22.2',
-  '1.22.3',
+  '0.12.0',
 ]
 
 export const foxyFarmerVersions: string[] = [
-  '1.22.4',
+  '1.22.4'
 ]
-
-export const allFoxyFarmerVersions: string[] = oldFoxyFarmerVersions.concat(foxyFarmerVersions)
-
