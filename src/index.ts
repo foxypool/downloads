@@ -1,5 +1,6 @@
 import {Directory, DirectoryOrFile} from './types/directory-or-file'
 import {rootDirectory} from './root-directory'
+import {Format} from './types/format'
 
 function getDirectoryOrFile(uri: string): DirectoryOrFile|undefined {
   const components = uri.split('/').filter(component => component !== '')
@@ -63,9 +64,14 @@ export default {
     }
 
     const url = new URL(request.url)
+    const format: Format = url.searchParams.get('format') as Format|null ?? Format.html
     const uri = url.pathname
     const directoryOrFile = getDirectoryOrFile(uri)
     if (directoryOrFile === undefined) {
+      if (format === Format.json) {
+        return Response.json('404 Not found', { status: 404 })
+      }
+
       return new Response('404 Not found', { status: 404 })
     }
     if (directoryOrFile.type === 'file') {
@@ -80,6 +86,9 @@ export default {
       response.headers.set('Cache-Control', 'public, max-age=600')
 
       return response
+    }
+    if (format === Format.json) {
+      return Response.json(directoryOrFile)
     }
 
     return new Response(makeDirectoryHtml(uri, directoryOrFile), { headers: { 'content-type': 'text/html; charset=utf-8'}})
