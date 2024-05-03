@@ -26,4 +26,5 @@ export const foxyFarmerVersions: string[] = [
   '1.22.4',
   '1.22.5',
   '1.22.6',
+  '1.22.7',
 ]
