@@ -21,6 +21,7 @@ export const drPlotterVersions: string[] = [
   '0.12.0',
   '0.12.1',
   '1.0.2',
+  '1.0.3',
 ]
 
 export const foxyFarmerVersions: string[] = [
