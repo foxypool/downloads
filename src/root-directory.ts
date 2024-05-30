@@ -80,7 +80,7 @@ function makeDirectoryForGigahorseRelease(version: string): Directory {
 function makeDrPlotterReleaseFactory(filesFactory: (version: string) => string[]): (version: string) => Directory {
   return (version: string) => {
     return makeDirectoryFromGithubRelease({
-      repo: 'drnick23/drplotter',
+      repo: 'Chia-Network/drplotter',
       tag: version,
       files: filesFactory(version),
     })
