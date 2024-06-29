@@ -15,6 +15,7 @@ export const gigahorseVersions: string[] = [
   '2.2.1.giga33',
   '2.2.1.giga35',
   '2.3.0.giga36',
+  '2.4.1.giga36',
 ]
 
 export const drPlotterVersions: string[] = [
@@ -22,6 +23,7 @@ export const drPlotterVersions: string[] = [
   '0.12.1',
   '1.0.2',
   '1.0.3',
+  '1.0.4',
 ]
 
 export const foxyFarmerVersions: string[] = [
