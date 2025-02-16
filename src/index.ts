@@ -11,7 +11,7 @@ function getDirectoryOrFile(uri: string): DirectoryOrFile|undefined {
     }
     let child = current.entries[component]
     if (child?.type === 'link') {
-      child = current.entries[child.pointsTo]
+      child = current.entries[child.pointsTo] as DirectoryOrFile
     }
     if (child === undefined) {
       return
