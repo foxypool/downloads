@@ -2,8 +2,8 @@ import {Directory} from './types/directory-or-file'
 import {arrayOfKeysToObject} from './array-to-object'
 import {
   drPlotterVersions,
-  foxyFarmerVersions,
-  gigahorseVersions,
+  oldFoxyFarmerVersions,
+  gigahorseVersions, foxyFarmerVersions,
 } from './versions'
 
 export const rootDirectory: Directory = {
@@ -23,8 +23,9 @@ export const rootDirectory: Directory = {
           entries: {
             latest: {
               type: 'link',
-              pointsTo: foxyFarmerVersions.at(-1) as string,
+              pointsTo: oldFoxyFarmerVersions.at(-1) as string,
             },
+            ...arrayOfKeysToObject(oldFoxyFarmerVersions, makeDirectoryForOldFoxyFarmerRelease),
             ...arrayOfKeysToObject(foxyFarmerVersions, makeDirectoryForFoxyFarmerRelease),
           },
         },
@@ -87,7 +88,7 @@ function makeDrPlotterReleaseFactory(filesFactory: (version: string) => string[]
   }
 }
 
-function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
+function makeDirectoryForOldFoxyFarmerRelease(version: string): Directory {
   return makeDirectoryFromGithubRelease({
     repo: 'foxypool/foxy-farmer',
     tag: version,
@@ -96,6 +97,19 @@ function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
       'foxy-farmer-macos-arm64.zip',
       'foxy-farmer-ubuntu.zip',
       'foxy-farmer-ubuntu-20.04.zip',
+      'foxy-farmer-windows.zip',
+    ],
+  })
+}
+
+function makeDirectoryForFoxyFarmerRelease(version: string): Directory {
+  return makeDirectoryFromGithubRelease({
+    repo: 'foxypool/foxy-farmer',
+    tag: version,
+    files: [
+      'foxy-farmer-macos.zip',
+      'foxy-farmer-macos-arm64.zip',
+      'foxy-farmer-ubuntu.zip',
       'foxy-farmer-windows.zip',
     ],
   })

@@ -28,7 +28,7 @@ export const drPlotterVersions: string[] = [
   '1.0.4',
 ]
 
-export const foxyFarmerVersions: string[] = [
+export const oldFoxyFarmerVersions: string[] = [
   '1.22.4',
   '1.22.5',
   '1.22.6',
@@ -37,3 +37,5 @@ export const foxyFarmerVersions: string[] = [
   '1.23.1',
   '1.24.0',
 ]
+
+export const foxyFarmerVersions: string[] = []
